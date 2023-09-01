@@ -126,6 +126,7 @@ const TeamCards = () => {
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 horizontal={true}
+                initialNumToRender={11}
             />
         </SafeAreaView>
     );

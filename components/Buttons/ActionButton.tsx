@@ -1,20 +1,21 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 
 import { WINDOW_WIDTH, WINDOW_HEIGHT } from "../../constants/DIMENSIONS";
 
-export default function ActionButton({title, onPress, backgroundColor, color}){
+export default function ActionButton({title, onPress, backgroundColor, color, underlayColor }){
     return(
-        <TouchableOpacity style={[styles.container, {backgroundColor}]} onPress={onPress}>
+        <TouchableHighlight activeOpacity={0.6} underlayColor={underlayColor} style={[styles.container, {backgroundColor}]} onPress={onPress}>
+            <View>
             <Text style={[styles.title, {color}]}>{title}</Text>
-        </TouchableOpacity>
+            </View>
+        </TouchableHighlight>
     )
 }
 
 const styles = StyleSheet.create({
     container:{
         width: WINDOW_WIDTH /1.5,
-        backgroundColor: 'pink',
         height: WINDOW_HEIGHT /18,
         alignItems:'center',
         justifyContent:'center',
