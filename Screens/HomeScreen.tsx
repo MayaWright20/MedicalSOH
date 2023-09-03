@@ -21,7 +21,7 @@ export default function HomeScreen({ navigation }) {
 
 
     return (
-        <Screen header={undefined} backText={null} onBackBtnPress={null}>
+        <Screen childBackgroundColor={COLORS.DARK_PURPLE} header={undefined} backText={null} onBackBtnPress={null}>
             <ScrollView style={{ paddingBottom: 5 }}>
                 <View style={styles.headerContainer}>
                     <Text style={[FONTS.TITLE, { color: 'white', fontSize: 30 }]}>

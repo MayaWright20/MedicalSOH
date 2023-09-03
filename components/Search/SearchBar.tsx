@@ -40,7 +40,6 @@ export default function SearchBar({data, itemRendered, onChangeText, filterFunct
                     value={searchQuery}
                     placeholder="Search Jobs"
                     onChangeText={searchFilterFunction}
-                    
                 />
                 <AntDesign name="search1" size={24} color={COLORS.DARK_PURPLE} />
             </View>

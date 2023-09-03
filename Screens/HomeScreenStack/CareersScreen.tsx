@@ -42,7 +42,7 @@ export default function CareersScreen({ navigation }) {
     };
 
     return (
-        <Screen header="Careers" backText={true} onBackBtnPress={() => navigation.navigate('HomeScreen')}>
+        <Screen childBackgroundColor={COLORS.WHITE} header="Careers" backText={true} onBackBtnPress={() => navigation.navigate('HomeScreen')}>
             <View style={styles.summaryWrapper}>
                 <Text style={[FONTS.TITLE, { fontSize: 21 }]}>
                     We're growing our team.

@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     FlatList,
-    SafeAreaView,
     StatusBar,
     StyleSheet,
     Text,
@@ -120,7 +119,7 @@ const TeamCards = () => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <FlatList
                 data={DATA}
                 renderItem={renderItem}
@@ -128,7 +127,7 @@ const TeamCards = () => {
                 horizontal={true}
                 initialNumToRender={11}
             />
-        </SafeAreaView>
+        </View>
     );
 };
 
