@@ -6,10 +6,9 @@ import { View, Text, StyleSheet } from "react-native";
 
 export default function RecipesModal(){
 
-    useEffect(()=>{
-        let response = axios.get("https://api.spoonacular.com/recipes/complexSearch")
-        console.log('response', response);
-    },[])
+    // useEffect(()=>{
+        
+    // },[])
     
 
 
