@@ -1,14 +1,19 @@
-import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import React, {useState, useContext} from "react";
+import { View, Text, Image, StyleSheet, Pressable } from "react-native";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { WINDOW_WIDTH } from "../../constants/DIMENSIONS";
 import { COLORS } from "../../constants/COLORS";
 
-export default function RecipeCard({ title, key, imgUrl, index }) {
+
+export default function RecipeCard({ title, imgUrl, index, id, onFavouriteToggle, iconName }) {
+
     return (
-        <View key={key} style={[styles.container, { borderColor: index % 2 === 0 ? COLORS.LIGHT_GREEN : COLORS.LIGHTEST_PURPLE },{ backgroundColor: index % 2 === 0 ? COLORS.LIGHT_GREEN : COLORS.LIGHTEST_PURPLE }]}>
-            
+        <View id={id}  style={[styles.container, { borderColor: index % 2 === 0 ? COLORS.LIGHT_GREEN : COLORS.LIGHTEST_PURPLE },{ backgroundColor: index % 2 === 0 ? COLORS.LIGHT_GREEN : COLORS.LIGHTEST_PURPLE }]}>
             <Image source={{ uri: imgUrl }} style={{ width: WINDOW_WIDTH / 3, height: WINDOW_WIDTH / 3 }} />
             <Text style={[styles.title, { color: index % 2 === 0 ? COLORS.LIGHT_GREEN : COLORS.LIGHTEST_PURPLE }]}>{title}</Text>
+            <Pressable style={styles.iconContainer} onPress={onFavouriteToggle}>
+                <MaterialCommunityIcons name={iconName} color={index % 2 === 0 ? COLORS.LIGHT_GREEN : COLORS.LIGHTEST_PURPLE} size={35} />
+            </Pressable>
         </View>
     )
 };
@@ -25,13 +30,10 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         borderWidth: 4,
     },
-    overlay: {
-        // position: 'absolute',
-        width: '100%',
-        height: '100%',
-        opacity: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+    iconContainer:{
+        position: 'absolute',
+        top: 0,
+        right: 0
     },
     title: {
         textAlign: 'center',

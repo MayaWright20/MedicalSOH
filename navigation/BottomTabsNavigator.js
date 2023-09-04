@@ -7,6 +7,7 @@ import ProfileScreen from '../Screens/ProfileScreen';
 import HomeStackNavigator from "./HomeStackNavigator";
 import { COLORS } from '../constants/COLORS';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FavourtiesContextProvider from '../store/context/favourties';
 
 
 
@@ -16,6 +17,7 @@ export default function BottomTabsNavigator() {
 
 
     return (
+        <FavourtiesContextProvider>
         <Tab.Navigator
             initialRouteName="Home"
             screenOptions={{
@@ -66,6 +68,7 @@ export default function BottomTabsNavigator() {
                     )
                 }}
             />
+            
             <Tab.Screen
                 name="Profile"
                 component={ProfileScreen}
@@ -76,5 +79,6 @@ export default function BottomTabsNavigator() {
                 }}
             />
         </Tab.Navigator>
+        </FavourtiesContextProvider>
     );
 }
