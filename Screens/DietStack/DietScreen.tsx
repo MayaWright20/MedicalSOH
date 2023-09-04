@@ -22,7 +22,7 @@ export default function DietScreen(){
             textColor2={COLORS.BLACK} 
             tab1underlayColor={COLORS.LIGHTEST_PURPLE} 
             tab2underlayColor={COLORS.LIGHTEST_PURPLE} 
-            tabBackgroundColor1={COLORS.LIGHT_PURPLE} 
+            tabBackgroundColor1={COLORS.WHITE} 
             tabBackgroundColor2={COLORS.PURPLE}/>
         </Screen>
     )
