@@ -15,9 +15,10 @@ const RecipesModal = () => {
     useEffect(() => {
         async function getRandomRecipes() {
             try {
-                const { data } = await axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${SPOONACULAR_API}&number=50&cuisine=mediterranean`);
+                const { data } = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${SPOONACULAR_API}&query=healthy&number=100`);
+                
                 const recipesData = [];
-                for (const [key, value] of Object.entries(data.recipes)) {
+                for (const [key, value] of Object.entries(data.results)) {
                     const recipeObj = {
                         key, value
                     }
@@ -33,6 +34,7 @@ const RecipesModal = () => {
         getRandomRecipes()
     }, []);
 
+    console.log("REA",randomRecipes)
     return (
         <View style={styles.container}>
             <FlatList
