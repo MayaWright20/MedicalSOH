@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import { getRandomRecipes } from "../../../utils/getRandomRecipes";
 import { Item } from "../../cards/RecipeItem";
+import { fetchMeals } from "../../../utils/database";
 
 const RecipesModal = () => {
     const [randomRecipes, setRandomRecipes] = useState([]);
@@ -11,8 +12,9 @@ const RecipesModal = () => {
             const data = await getRandomRecipes();
             setRandomRecipes(data)
         }
-        getRecipes()
+        getRecipes();
     }, []);
+
 
     return (
         <View style={styles.container}>
