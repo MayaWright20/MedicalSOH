@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import BottomTabsNavigator from "./navigation/BottomTabsNavigator";
-import AppLoading from 'expo-app-loading';
+import LoadingOverlay from './components/Background/LoadingOverlay';
 import {init} from "./utils/database";
+import { COLORS } from './constants/COLORS';
 
 export default function App() {
   const [dbInitialized, setDbInitialized] = useState(false);
@@ -17,7 +18,7 @@ export default function App() {
   },[])
 
   if(!dbInitialized){
-    return <AppLoading/>
+    return <LoadingOverlay backgroundColor={COLORS.DARK_PURPLE} color={COLORS.GREEN}/>
   }
 
   return (

@@ -1,4 +1,13 @@
+import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import Animated, {
+    useSharedValue,
+    useAnimatedStyle,
+    withTiming,
+    withDelay,
+    withSpring,
+    withSequence
+} from 'react-native-reanimated';
 
 import Screen from '../components/Layout/Screen';
 import SimpleOnlinePharmacySVG from "../assets/logos/simple_online_pharmacy.svg";
@@ -11,14 +20,40 @@ import TeamCards from '../components/cards/teamCards';
 import GreenHaze from '../components/Background/GreenHaze';
 import ActionButton from '../components/Buttons/ActionButton';
 
+import Circle from '../components/Shapes/Circle';
+import Square from '../components/Shapes/Square';
 
 import { APP_STYLING } from "../constants/APP_STYLING";
 import { FONTS } from '../constants/FONT_STYLING';
 import { COLORS } from '../constants/COLORS';
 import { WINDOW_WIDTH } from '../constants/DIMENSIONS';
 
+
+const useAnimatedStyleWithDelay = (delay, position) => {
+    const sharedValue = useSharedValue(position);
+
+    useEffect(() => {
+        sharedValue.value = withSequence(
+            withDelay(delay, withTiming(25, { duration: 2000 })),
+            withSpring(-1)
+        );
+    }, []);
+
+    
+
+    const animatedStyle = useAnimatedStyle(() => {
+        return { transform: [{ translateY: sharedValue.value }] };
+    });
+
+    return animatedStyle;
+}
+
 export default function HomeScreen({ navigation }) {
 
+    const square1 = useAnimatedStyleWithDelay(0, 0);
+    const circle1 = useAnimatedStyleWithDelay(250, 0);
+    const circle2 = useAnimatedStyleWithDelay(500, 0);
+    const square2 = useAnimatedStyleWithDelay(750, 0);
 
     return (
         <Screen childBackgroundColor={COLORS.DARK_PURPLE} header={undefined} backText={null} onBackBtnPress={null}>
@@ -29,6 +64,27 @@ export default function HomeScreen({ navigation }) {
                     </Text>
                 </View>
                 <View style={styles.summaryWrapper}>
+
+                    <View style={[styles.shapesContainer]}>
+                        <Animated.View style={[styles.animatedShape, square1]}>
+                            <Square width={WINDOW_WIDTH / 8} height={WINDOW_WIDTH / 8} backgroundColor={COLORS.PURPLE} />
+                        </Animated.View >
+                        <Animated.View style={[styles.animatedShape, circle1]}>
+                            <Circle width={WINDOW_WIDTH / 8} height={WINDOW_WIDTH / 8} backgroundColor={COLORS.GREEN} />
+                        </Animated.View>
+                        <Animated.View style={[styles.animatedShape, circle2]}>
+                            <Circle width={WINDOW_WIDTH / 8} height={WINDOW_WIDTH / 8} backgroundColor={COLORS.PURPLE} />
+                        </Animated.View>
+                        <Animated.View style={[styles.animatedShape, square2]}>
+                            <Square width={WINDOW_WIDTH / 8} height={WINDOW_WIDTH / 8} backgroundColor={COLORS.GREEN} />
+                        </Animated.View>
+                    </View>
+
+
+
+
+
+
                     <Text style={[FONTS.TITLE, { fontSize: 21, paddingBottom: 5 }]}>
                         We started off as a pharmacy with big dreams.
                     </Text>
@@ -105,8 +161,23 @@ const styles = StyleSheet.create({
         paddingBottom: APP_STYLING.PADDING.paddingBottom,
         paddingHorizontal: '1%'
     },
+    shapesContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        height: WINDOW_WIDTH / 8,
+        marginLeft: WINDOW_WIDTH / 8,
+        marginRight: WINDOW_WIDTH / 8,
+        marginTop: WINDOW_WIDTH / 25,
+        marginBottom: WINDOW_WIDTH / 12,
+        justifyContent: 'space-between',
+    },
+    animatedShape: {
+
+    },
     summaryWrapper: {
         backgroundColor: COLORS.WHITE,
-        padding: 10,
+        paddingLeft: 10,
+        paddingBottom: 10,
+        paddingRight: 10
     }
 });
