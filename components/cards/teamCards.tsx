@@ -106,15 +106,19 @@ const TeamCards = () => {
 
     const renderItem = ({ item, index }: { item: ItemData, index: number }) => {
         let backgroundColor;
-        index % 2 === 0 ? backgroundColor = COLORS.LIGHT_GREEN : backgroundColor = COLORS.LIGHT_PURPLE;
-        
+        if (index % 2 === 0) {
+            backgroundColor = COLORS.LIGHT_GREEN;
+        } else {
+            backgroundColor = COLORS.LIGHT_PURPLE;
+        }
 
         return (
             <Item
                 item={item}
                 backgroundColor={backgroundColor}
-                uri={item.uri}
-            />
+                uri={item.uri} 
+                textColor={COLORS.BLACK}            
+                />
         );
     };
 
