@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FavouritesContext } from "../../store/context/favourties";
 import RecipeCard from "./RecipeCard";
-import { insertMeal, deleteMeal } from "../../utils/database";
+import { insertMeal, deleteMeal, fetchMeals } from "../../utils/database";
 
-export const Item = ({ title, key, imgUrl, index, id }) => {
+export const Item = ({ title, key, imgUrl, index, id, iconName }) => {
     const favouriteMealsCtx = useContext(FavouritesContext);
+    // this is not pure because id is changing recipe item and is called after - its changing the favourites heart name
+    
     const mealId = id;
 
+
     const mealIsFavourite = favouriteMealsCtx.ids.includes(mealId);
+
 
     function changeFavouriteStatusHandler() {
         if (mealIsFavourite) {
@@ -21,6 +25,6 @@ export const Item = ({ title, key, imgUrl, index, id }) => {
     }
 
     return (
-        <RecipeCard iconName={mealIsFavourite ? 'heart' : 'heart-outline'} id={mealId} key={key} title={title} imgUrl={imgUrl} index={index} onFavouriteToggle={changeFavouriteStatusHandler} />
+        <RecipeCard iconName={iconName} id={mealId} key={key} title={title} imgUrl={imgUrl} index={index} onFavouriteToggle={changeFavouriteStatusHandler} />
     );
 };
