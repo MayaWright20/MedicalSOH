@@ -96,7 +96,7 @@ type ItemProps = {
 
 const Item = ({ item, backgroundColor, textColor, uri }: ItemProps) => (
     <View style={[styles.item, { backgroundColor }]}>
-        <Image width={120} height={150} source={{uri: uri}}/>
+        <Image style={styles.image} width={120} height={150} source={{uri: uri}}/>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.title}>{item.title}</Text>
     </View>
@@ -145,7 +145,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 15,
-        
+    },
+    image:{
+        borderBottomRightRadius: 70,
+        borderBottomLeftRadius: 30
     },
     name:{
         marginTop: 5,

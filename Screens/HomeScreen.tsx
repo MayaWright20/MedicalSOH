@@ -34,12 +34,10 @@ const useAnimatedStyleWithDelay = (delay, position) => {
 
     useEffect(() => {
         sharedValue.value = withSequence(
-            withDelay(delay, withTiming(25, { duration: 2000 })),
+            withDelay(delay, withTiming(25, { duration: 200 })),
             withSpring(-1)
         );
     }, []);
-
-    
 
     const animatedStyle = useAnimatedStyle(() => {
         return { transform: [{ translateY: sharedValue.value }] };
@@ -51,9 +49,9 @@ const useAnimatedStyleWithDelay = (delay, position) => {
 export default function HomeScreen({ navigation }) {
 
     const square1 = useAnimatedStyleWithDelay(0, 0);
-    const circle1 = useAnimatedStyleWithDelay(250, 0);
-    const circle2 = useAnimatedStyleWithDelay(500, 0);
-    const square2 = useAnimatedStyleWithDelay(750, 0);
+    const circle1 = useAnimatedStyleWithDelay(200, 0);
+    const circle2 = useAnimatedStyleWithDelay(400, 0);
+    const square2 = useAnimatedStyleWithDelay(600, 0);
 
     return (
         <Screen childBackgroundColor={COLORS.DARK_PURPLE} header={undefined} backText={null} onBackBtnPress={null}>
@@ -66,31 +64,27 @@ export default function HomeScreen({ navigation }) {
                 <View style={styles.summaryWrapper}>
 
                     <View style={[styles.shapesContainer]}>
-                        <Animated.View style={[styles.animatedShape, square1]}>
+                        <Animated.View style={[square1]}>
                             <Square width={WINDOW_WIDTH / 8} height={WINDOW_WIDTH / 8} backgroundColor={COLORS.PURPLE} />
                         </Animated.View >
-                        <Animated.View style={[styles.animatedShape, circle1]}>
+                        <Animated.View style={[circle1]}>
                             <Circle width={WINDOW_WIDTH / 8} height={WINDOW_WIDTH / 8} backgroundColor={COLORS.GREEN} />
                         </Animated.View>
-                        <Animated.View style={[styles.animatedShape, circle2]}>
+                        <Animated.View style={[circle2]}>
                             <Circle width={WINDOW_WIDTH / 8} height={WINDOW_WIDTH / 8} backgroundColor={COLORS.PURPLE} />
                         </Animated.View>
-                        <Animated.View style={[styles.animatedShape, square2]}>
+                        <Animated.View style={[square2]}>
                             <Square width={WINDOW_WIDTH / 8} height={WINDOW_WIDTH / 8} backgroundColor={COLORS.GREEN} />
                         </Animated.View>
                     </View>
-
-
-
-
-
-
-                    <Text style={[FONTS.TITLE, { fontSize: 21, paddingBottom: 5 }]}>
-                        We started off as a pharmacy with big dreams.
-                    </Text>
-                    <Text style={{ fontSize: 18, textAlign: 'center', paddingBottom: APP_STYLING.PADDING.paddingBottom }}>
-                        Founded in 2015, Simple Online Healthcare began life providing over the counter treatments to patients across the UK. This quickly expanded into private online GP clinics, and NHS prescriptions. Today, we are trusted by over 1000 patients per day, to make sure they receive their medication safely and on time.
-                    </Text>
+                    <View style={styles.textContainer}>
+                        <Text style={[FONTS.TITLE, styles.header]}>
+                            We started off as a pharmacy with big dreams.
+                        </Text>
+                        <Text style={{ fontSize: 18, textAlign: 'center', paddingBottom: APP_STYLING.PADDING.paddingBottom }}>
+                            Founded in 2015, Simple Online Healthcare began life providing over the counter treatments to patients across the UK. This quickly expanded into private online GP clinics, and NHS prescriptions. Today, we are trusted by over 1000 patients per day, to make sure they receive their medication safely and on time.
+                        </Text>
+                    </View>
                     <View>
                         <RectagularTwoLineCard fontSize={40} title="500,000+" description="Patients served annually" />
                         <RectagularTwoLineCard fontSize={40} title="3" description="Countries serviced" />
@@ -98,7 +92,7 @@ export default function HomeScreen({ navigation }) {
                     </View>
                 </View>
                 <View style={[styles.summaryWrapper, { backgroundColor: COLORS.LIGHT_PURPLE }]}>
-                    <Text style={[FONTS.TITLE, { fontSize: 21, paddingBottom: 5 }]}>
+                    <Text style={[FONTS.TITLE, styles.header]}>
                         Our growing family
                     </Text>
                     <Text style={{ fontSize: 18, textAlign: 'center', paddingBottom: APP_STYLING.PADDING.paddingBottom }}>
@@ -168,11 +162,15 @@ const styles = StyleSheet.create({
         marginLeft: WINDOW_WIDTH / 8,
         marginRight: WINDOW_WIDTH / 8,
         marginTop: WINDOW_WIDTH / 25,
-        marginBottom: WINDOW_WIDTH / 12,
+        // marginBottom: WINDOW_WIDTH / 15,
         justifyContent: 'space-between',
     },
-    animatedShape: {
-
+    textContainer: {
+        paddingBottom: 5, 
+        marginTop: 30
+    },
+    header:{
+        fontSize: 21
     },
     summaryWrapper: {
         backgroundColor: COLORS.WHITE,
