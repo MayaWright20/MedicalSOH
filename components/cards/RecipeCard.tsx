@@ -1,11 +1,11 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, memo} from "react";
 import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { WINDOW_WIDTH } from "../../constants/DIMENSIONS";
 import { COLORS } from "../../constants/COLORS";
 
 
-export default function RecipeCard({ title, imgUrl, index, id, onFavouriteToggle, iconName }) {
+function RecipeCard({ title, imgUrl, index, id, onFavouriteToggle, iconName }) {
 
     return (
         <View id={id}  style={[styles.container, { borderColor: index % 2 === 0 ? COLORS.LIGHT_GREEN : COLORS.LIGHTEST_PURPLE },{ backgroundColor: index % 2 === 0 ? COLORS.LIGHT_GREEN : COLORS.LIGHTEST_PURPLE }]}>
@@ -42,3 +42,5 @@ const styles = StyleSheet.create({
     }
 
 });
+
+export default memo(RecipeCard);

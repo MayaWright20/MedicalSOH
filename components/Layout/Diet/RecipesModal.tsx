@@ -21,9 +21,9 @@ const RecipesModal = () => {
             <FlatList
                 data={randomRecipes}
                 numColumns={3}
+                keyExtractor={item => item.value.id}
                 renderItem={({ item, index }) => (
                     <Item
-                        key={item.value.id}
                         title={item.value.title}
                         imgUrl={item.value.image}
                         index={index}

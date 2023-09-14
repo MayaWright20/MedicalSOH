@@ -3,7 +3,7 @@ import { FavouritesContext } from "../../store/context/favourties";
 import RecipeCard from "./RecipeCard";
 import { insertMeal, deleteMeal, fetchMeals } from "../../utils/database";
 
-export const Item = ({ title, key, imgUrl, index, id, iconName }) => {
+export const Item = ({ title, imgUrl, index, id, iconName }) => {
     const favouriteMealsCtx = useContext(FavouritesContext);
     // this is not pure because id is changing recipe item and is called after - its changing the favourites heart name
     
@@ -25,6 +25,6 @@ export const Item = ({ title, key, imgUrl, index, id, iconName }) => {
     }
 
     return (
-        <RecipeCard iconName={iconName} id={mealId} key={key} title={title} imgUrl={imgUrl} index={index} onFavouriteToggle={changeFavouriteStatusHandler} />
+        <RecipeCard iconName={iconName} id={mealId} title={title} imgUrl={imgUrl} index={index} onFavouriteToggle={changeFavouriteStatusHandler} />
     );
 };
